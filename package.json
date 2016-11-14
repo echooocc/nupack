@@ -2,9 +2,9 @@
   "name": "nulogy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "calculator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/ --reporter=nyan"
   },
   "author": "Echo Yu",
   "license": "ISC",
