@@ -1,7 +1,9 @@
 var FlatMarkup = function() {};
 
+const FLAT_MARKUP_RATE = 0.05;
+
 FlatMarkup.prototype.calculate = function(base) {
-    return base*0.05;
+    return base*FLAT_MARKUP_RATE;
 }
 
 FlatMarkup.prototype.addson = function(base) {
