@@ -10,6 +10,10 @@ var om = new OtherMarkup();
 
 Calculator.prototype.calculate = function(base, ppl, category) {
 
+  if (typeof base !== "number" || base <= 0) {
+    throw new Error("Invalid base price input");
+  }
+
   if (arguments.length < 3) {
     if (typeof arguments[1] === "string") {
       category = arguments[1];

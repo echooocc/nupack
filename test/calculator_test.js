@@ -23,5 +23,11 @@ describe('Calculator', function() {
     it('should return final price = base price + flat markup + labor markup, if the category input option is missing', function() {
       expect(ca.calculate(5432.00)).to.equal(5772.04);
     });
+
+    it('should thrown error when enter invalid base price', function() {
+      expect(function() { ca.calculate('1001', 1, 'drug'); }).to.throw('Invalid base price input');
+      expect(function() { ca.calculate(0, 1, 'drug'); }).to.throw('Invalid base price input');
+      expect(function() { ca.calculate(-50, 1, 'drug'); }).to.throw('Invalid base price input');
+    });
   });
 });
