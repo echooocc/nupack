@@ -1,7 +1,7 @@
 "use strict";
 
-var FlatMarkup =  require('../calculator/flatmarkup.js');
-var OtherMarkup =  require('../calculator/othermarkup.js');
+var FlatMarkup =  require('./flatmarkup.js');
+var OtherMarkup =  require('./othermarkup.js');
 
 var Calculator = function() {};
 
@@ -9,6 +9,14 @@ var fm = new FlatMarkup();
 var om = new OtherMarkup();
 
 Calculator.prototype.calculate = function (base, ppl, category) {
+
+    if(arguments.length < 3) {
+        if(typeof arguments[1] === "string") {
+            category = arguments[1];
+        }
+        ppl = 1;
+    }
+
     let flatbase = fm.getFlatBase(base);
     let total = 0;
 
