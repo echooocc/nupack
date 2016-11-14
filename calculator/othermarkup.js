@@ -1,3 +1,5 @@
+"use strict";
+
 var OtherMarkup = function() {};
 
 const LABOR_MARKUP_RATE = 0.012;
@@ -7,19 +9,23 @@ const ELECTRONICS_MARKUP_RATE = 0.02;
 
 
 OtherMarkup.prototype.getLaborMarkup = function (addson, quantity) {
-    return addson * LABOR_MARKUP_RATE * quantity;
+    let markup = addson * LABOR_MARKUP_RATE * quantity;
+    return parseFloat(markup.toFixed(2));
 };
 
 OtherMarkup.prototype.getPharmMarkup = function (addson) {
-    return addson * PHARM_MARKUP_RATE;
+    let markup =  addson * PHARM_MARKUP_RATE;
+    return parseFloat(markup.toFixed(2));
 };
 
 OtherMarkup.prototype.getFoodMarkup = function (addson) {
-    return addson * FOOD_MARKUP_RATE;
+    let markup = addson * FOOD_MARKUP_RATE;
+    return parseFloat(markup.toFixed(2));
 };
 
 OtherMarkup.prototype.getElectronicsMarkup = function (addson) {
-    return addson * ELECTRONICS_MARKUP_RATE;
+    let markup = addson * ELECTRONICS_MARKUP_RATE;
+    return parseFloat(markup.toFixed(2));
 };
 
 module.exports = OtherMarkup;
