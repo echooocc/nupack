@@ -24,6 +24,4 @@ describe('Calculator', function() {
       expect(ca.calculate(5432.00)).to.equal(5772.04);
     });
   });
-
-
 });
