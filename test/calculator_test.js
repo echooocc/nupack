@@ -20,8 +20,14 @@ describe('Calculator', function() {
       expect(ca.calculate(5432.00, 'drugs')).to.equal(6199.81);
     });
 
-    it('should return final price = base price + flat markup + labor markup, if the category input option is missing', function() {
+    it('should omit calculating the other markup if the category input option is missing', function() {
       expect(ca.calculate(5432.00)).to.equal(5772.04);
+    });
+
+    it('should accpet alternative category names', function() {
+      expect(ca.calculate(5432.00, 1, 'drug')).to.equal(6199.81);
+      expect(ca.calculate(1299.99, 3, 'sweets')).to.equal(1591.58);
+      expect(ca.calculate(499.99, 1, 'ELECTRONICS')).to.equal(541.79);
     });
 
     it('should thrown error when enter invalid base price', function() {

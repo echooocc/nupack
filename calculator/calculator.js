@@ -12,19 +12,19 @@ var Calculator = function() {
   }
 
   function checkPartialParameter(args) {
-    var parameters = {};
+    let parameters = {};
     if (typeof args[0] !== "number" || args[0] <= 0) {
       throw new Error("Invalid base price input");
     }
     parameters.base = args[0];
     if (args.length < 3) {
       if (typeof args[1] === "string") {
-        parameters.category = args[1];
+        parameters.category = args[1].toLowerCase();
       }
       parameters.ppl = 1;
     } else {
       parameters.ppl = args[1];
-      parameters.category = args[2];
+      parameters.category = args[2].toLowerCase();
     }
     return parameters;
   }
@@ -39,9 +39,9 @@ var Calculator = function() {
 
       total = flatbase + mc.getLaborMarkup(flatbase, markups.LABOR_MARKUP_RATE, args.ppl);
 
-      if (args.category === "drugs") {
+      if (args.category === "drugs" || args.category === "drug") {
         total += mc.getOtherMarkup(flatbase, markups.PHARM_MARKUP_RATE);
-      } else if (args.category === "food") {
+      } else if (args.category === "food" || args.category === "sweets") {
         total += mc.getOtherMarkup(flatbase, markups.FOOD_MARKUP_RATE);
       } else if (args.category === "electronics") {
         total += mc.getOtherMarkup(flatbase, markups.ELECTRONICS_MARKUP_RATE);
