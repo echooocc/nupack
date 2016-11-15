@@ -1,12 +1,16 @@
 {
   "name": "nulogy",
   "version": "1.0.0",
-  "description": "",
+  "description": "nulogy nupack code chanllenge",
   "main": "calculator.js",
   "scripts": {
     "test": "mocha test/ --reporter=nyan"
   },
-  "author": "Echo Yu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/echooocc/nupack"
+  },
+  "author": "Echo Yu <echo.yu.eyu@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
