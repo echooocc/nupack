@@ -28,6 +28,7 @@ describe('Calculator', function() {
       expect(function() { ca.calculate('1001', 1, 'drug'); }).to.throw('Invalid base price input');
       expect(function() { ca.calculate(0, 1, 'drug'); }).to.throw('Invalid base price input');
       expect(function() { ca.calculate(-50, 1, 'drug'); }).to.throw('Invalid base price input');
+      expect(function() { ca.calculate(); }).to.throw('Invalid base price input');
     });
   });
 });

@@ -3,6 +3,7 @@
 var OtherMarkup = function() {};
 
 const LABOR_MARKUP_RATE = 0.012;
+
 const PHARM_MARKUP_RATE = 0.075;
 const FOOD_MARKUP_RATE = 0.13;
 const ELECTRONICS_MARKUP_RATE = 0.02;
