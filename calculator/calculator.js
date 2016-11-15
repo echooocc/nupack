@@ -1,39 +1,44 @@
 "use strict";
 
-var FlatMarkup = require('./flatmarkup.js');
-var OtherMarkup = require('./othermarkup.js');
+var MarkupCalculator = require('./markupcalculator.js');
+var MarkupConfig = require('./markup_config.js');
 
-var Calculator = function() {};
+var mc = new MarkupCalculator();
+var markups = new MarkupConfig();
 
-var fm = new FlatMarkup();
-var om = new OtherMarkup();
-
-Calculator.prototype.calculate = function(base, ppl, category) {
-
-  if (typeof base !== "number" || base <= 0) {
-    throw new Error("Invalid base price input");
+var Calculator = function() {
+  function numberFormat(number) {
+    return parseFloat(number.toFixed(2));
   }
 
-  if (arguments.length < 3) {
-    if (typeof arguments[1] === "string") {
-      category = arguments[1];
+  return {
+    calculate: function(base, ppl, category) {
+      if (typeof base !== "number" || base <= 0) {
+        throw new Error("Invalid base price input");
+      }
+
+      if (arguments.length < 3) {
+        if (typeof arguments[1] === "string") {
+          category = arguments[1];
+        }
+        ppl = 1;
+      }
+
+      let flatbase = mc.getFlatBase(base, markups.FLAT_MARKUP_RATE);
+      let total = 0;
+
+      total = flatbase + mc.getLaborMarkup(flatbase, markups.LABOR_MARKUP_RATE, ppl);
+
+      if (category === "drugs") {
+        total += mc.getOtherMarkup(flatbase, markups.PHARM_MARKUP_RATE);
+      } else if (category === "food") {
+        total += mc.getOtherMarkup(flatbase, markups.FOOD_MARKUP_RATE);
+      } else if (category === "electronics") {
+        total += mc.getOtherMarkup(flatbase, markups.ELECTRONICS_MARKUP_RATE);
+      }
+      return numberFormat(total);
     }
-    ppl = 1;
-  }
-
-  let flatbase = fm.getFlatBase(base);
-  let total = 0;
-
-  total = flatbase + om.getLaborMarkup(flatbase, ppl);
-
-  if (category === "drugs") {
-    total += om.getPharmMarkup(flatbase);
-  } else if (category === "food") {
-    total += om.getFoodMarkup(flatbase);
-  } else if (category === "electronics") {
-    total += om.getElectronicsMarkup(flatbase);
-  }
-  return parseFloat(total.toFixed(2));
+  };
 };
 
 module.exports = Calculator;
