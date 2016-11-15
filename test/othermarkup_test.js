@@ -4,11 +4,17 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var OtherMarkup = require('../calculator/othermarkup.js');
-var Markups = require('../calculator/markup_config.js');
 
 describe('OtherMarkup', function() {
   var om = new OtherMarkup();
-  var markups = new Markups();
+
+  var markups = {
+    FLAT_MARKUP_RATE: 0.05,
+    LABOR_MARKUP_RATE: 0.012,
+    PHARM_MARKUP_RATE: 0.075,
+    FOOD_MARKUP_RATE: 0.13,
+    ELECTRONICS_MARKUP_RATE: 0.02
+  };
 
   describe('#getFlatBase()', function() {
     it('should return the price with base and flat markup', function() {
