@@ -10,6 +10,11 @@ var OtherMarkup = function() {
   }
 
   return {
+    getFlatBase: function(price, markup) {
+      let markupPrice = calculate(price, markup);
+      return numberFormat(markupPrice+price);
+    },
+
     getOtherMarkup: function(price, markup) {
       let markupPrice = calculate(price, markup);
       return numberFormat(markupPrice);

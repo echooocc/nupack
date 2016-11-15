@@ -10,8 +10,16 @@ describe('OtherMarkup', function() {
   var om = new OtherMarkup();
   var markups = new Markups();
 
+  describe('#getFlatBase()', function() {
+    it('should return the price with base and flat markup', function() {
+      expect(om.getFlatBase(100, markups.FLAT_MARKUP_RATE)).to.be.a('number');
+      expect(om.getFlatBase(100, markups.FLAT_MARKUP_RATE)).to.equal(105);
+      expect(om.getFlatBase(100.11, markups.FLAT_MARKUP_RATE)).to.equal(105.12);
+    });
+  });
+
   describe('#getLaborMarkup()', function() {
-    it('should return the markup based on number of people working', function() {
+    it('should return the markup based on labor markup rate and number of people', function() {
       expect(om.getLaborMarkup(100, markups.LABOR_MARKUP_RATE, 1)).to.be.a('number');
       expect(om.getLaborMarkup(100, markups.LABOR_MARKUP_RATE, 1)).to.equal(1.2);
       expect(om.getLaborMarkup(100, markups.LABOR_MARKUP_RATE, 3)).to.equal(3.6);
