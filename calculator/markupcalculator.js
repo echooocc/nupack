@@ -1,6 +1,6 @@
 "use strict";
 
-var OtherMarkup = function() {
+var MarkupCalculator = function() {
   function calculate(price, markups) {
     return price * markups;
   }
@@ -12,7 +12,7 @@ var OtherMarkup = function() {
   return {
     getFlatBase: function(price, markup) {
       let markupPrice = calculate(price, markup);
-      return numberFormat(markupPrice+price);
+      return numberFormat(markupPrice + price);
     },
 
     getOtherMarkup: function(price, markup) {
@@ -27,4 +27,4 @@ var OtherMarkup = function() {
   };
 };
 
-module.exports = OtherMarkup;
+module.exports = MarkupCalculator;
