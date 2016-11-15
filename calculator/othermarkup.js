@@ -1,32 +1,25 @@
 "use strict";
 
-var OtherMarkup = function() {};
+var OtherMarkup = function() {
+  function calculate(price, markups) {
+    return price * markups;
+  }
 
-const LABOR_MARKUP_RATE = 0.012;
+  function numberFormat(number) {
+    return parseFloat(number.toFixed(2));
+  }
 
-const PHARM_MARKUP_RATE = 0.075;
-const FOOD_MARKUP_RATE = 0.13;
-const ELECTRONICS_MARKUP_RATE = 0.02;
+  return {
+    getOtherMarkup: function(price, markup) {
+      let markupPrice = calculate(price, markup);
+      return numberFormat(markupPrice);
+    },
 
-
-OtherMarkup.prototype.getLaborMarkup = function(addson, quantity) {
-  let markup = addson * LABOR_MARKUP_RATE * quantity;
-  return parseFloat(markup.toFixed(2));
-};
-
-OtherMarkup.prototype.getPharmMarkup = function(addson) {
-  let markup = addson * PHARM_MARKUP_RATE;
-  return parseFloat(markup.toFixed(2));
-};
-
-OtherMarkup.prototype.getFoodMarkup = function(addson) {
-  let markup = addson * FOOD_MARKUP_RATE;
-  return parseFloat(markup.toFixed(2));
-};
-
-OtherMarkup.prototype.getElectronicsMarkup = function(addson) {
-  let markup = addson * ELECTRONICS_MARKUP_RATE;
-  return parseFloat(markup.toFixed(2));
+    getLaborMarkup: function(price, markup, quantity) {
+      let markupPrice = calculate(price, markup) * quantity;
+      return numberFormat(markupPrice);
+    }
+  };
 };
 
 module.exports = OtherMarkup;
