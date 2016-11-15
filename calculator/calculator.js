@@ -7,6 +7,13 @@ var mc = new MarkupCalculator();
 var markups = new MarkupConfig();
 
 var Calculator = function() {
+  //predefine some alternative input for category names
+  var categories = {
+    PHARM_MARKUP_RATE: "drug drugs medicines",
+    FOOD_MARKUP_RATE: "food sweets",
+    ELECTRONICS_MARKUP_RATE: "electronics consoles batteries battery"
+  };
+
   function numberFormat(number) {
     return parseFloat(number.toFixed(2));
   }
@@ -29,6 +36,15 @@ var Calculator = function() {
     return parameters;
   }
 
+  function checkCategories(category) {
+    for (let i in categories) {
+      if (categories[i].includes(category)) {
+        return i;
+      }
+    }
+    return undefined;
+  }
+
   return {
     calculate: function(base, ppl, category) {
       //format the arguments incase of partial parameters
@@ -39,12 +55,10 @@ var Calculator = function() {
 
       total = flatbase + mc.getLaborMarkup(flatbase, markups.LABOR_MARKUP_RATE, args.ppl);
 
-      if (args.category === "drugs" || args.category === "drug") {
-        total += mc.getOtherMarkup(flatbase, markups.PHARM_MARKUP_RATE);
-      } else if (args.category === "food" || args.category === "sweets") {
-        total += mc.getOtherMarkup(flatbase, markups.FOOD_MARKUP_RATE);
-      } else if (args.category === "electronics") {
-        total += mc.getOtherMarkup(flatbase, markups.ELECTRONICS_MARKUP_RATE);
+      //match category with alternative names
+      let matchCategory = checkCategories(args.category);
+      if (matchCategory !== undefined) {
+        total += mc.getOtherMarkup(flatbase, markups[matchCategory]);
       }
       return numberFormat(total);
     }
