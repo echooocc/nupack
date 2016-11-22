@@ -1,24 +1,19 @@
 "use strict";
 
 var MarkupCalculator = function() {
-  function calculate(price, markups) {
-    return price * markups;
-  }
 
   return {
+    //flat base = flat markup + base price
     getFlatBase: function(price, markup) {
-      let markupPrice = calculate(price, markup);
-      return markupPrice + price;
+      return price * markup + price;
     },
-
+    //other markup = price * markup rates
     getOtherMarkup: function(price, markup) {
-      let markupPrice = calculate(price, markup);
-      return markupPrice;
+      return price * markup;;
     },
-
+    //labor markup = price * markup rates * number of people invloved
     getLaborMarkup: function(price, markup, quantity) {
-      let markupPrice = calculate(price, markup) * quantity;
-      return markupPrice;
+      return price * markup * quantity;
     }
   };
 };
