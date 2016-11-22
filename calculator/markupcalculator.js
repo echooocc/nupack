@@ -5,24 +5,20 @@ var MarkupCalculator = function() {
     return price * markups;
   }
 
-  function numberFormat(number) {
-    return parseFloat(number.toFixed(2));
-  }
-
   return {
     getFlatBase: function(price, markup) {
       let markupPrice = calculate(price, markup);
-      return numberFormat(markupPrice + price);
+      return markupPrice + price;
     },
 
     getOtherMarkup: function(price, markup) {
       let markupPrice = calculate(price, markup);
-      return numberFormat(markupPrice);
+      return markupPrice;
     },
 
     getLaborMarkup: function(price, markup, quantity) {
       let markupPrice = calculate(price, markup) * quantity;
-      return numberFormat(markupPrice);
+      return markupPrice;
     }
   };
 };
