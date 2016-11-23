@@ -4,16 +4,13 @@ var MarkupCalculator = require('./markupcalculator.js');
 var MarkupConfig = require('./markup_config.js');
 
 var mc = new MarkupCalculator();
-var markups = new MarkupConfig();
+
+var markups = MarkupConfig.MarkupConfig;
+var categories = MarkupConfig.CategoriesConfig;
 
 var Calculator = function() {
-  //predefine some alternative input for category names
-  var categories = {
-    PHARM_MARKUP_RATE: "drug drugs medicines",
-    FOOD_MARKUP_RATE: "food sweets",
-    ELECTRONICS_MARKUP_RATE: "electronics consoles batteries battery"
-  };
 
+  //round output to 2 decimal place
   function numberFormat(number) {
     return parseFloat(number.toFixed(2));
   }
