@@ -27,7 +27,7 @@ var Calculator = function() {
       if (matchCategory !== undefined) {
         total += mc.getOtherMarkup(flatbase, markups[matchCategory]);
       }
-      return helper.numberFormat(total);
+      return helper.roundNumber(total);
     }
   };
 };

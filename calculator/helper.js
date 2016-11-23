@@ -4,7 +4,7 @@ var Helper = function() {
 
   return {
     //round output to 2 decimal place
-    numberFormat: function(number) {
+    roundNumber: function(number) {
       return parseFloat(number.toFixed(2));
     },
     /*check partial input
