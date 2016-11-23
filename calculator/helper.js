@@ -11,7 +11,7 @@ var Helper = function() {
      * 1,throws error when input is not number or empty
      * 2,accpet input format 5432.00, 1, 'drug'; 5432.00, 1; 5432.00, 'drugs'; 5432.00
      */
-    checkPartialParameter: function(args) {
+    checkInputFormat: function(args) {
       let parameters = {};
       if (typeof args[0] !== "number" || args[0] <= 0) {
         throw new Error("Invalid base price input");

@@ -15,7 +15,7 @@ var Calculator = function() {
   return {
     calculate: function(base, ppl, category) {
       //format the arguments incase of partial parameters
-      let args = helper.checkPartialParameter(arguments);
+      let args = helper.checkInputFormat(arguments);
 
       let flatbase = mc.getFlatBase(args.base, markups.FLAT_MARKUP_RATE);
       let total = 0;
